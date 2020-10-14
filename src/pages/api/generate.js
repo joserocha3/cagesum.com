@@ -1,5 +1,6 @@
-import gql from 'graphql-tag'
-import shuffle from 'lodash.shuffle'
+const fetch = require('node-fetch')
+const gql = require('graphql-tag')
+const shuffle = require('lodash.shuffle')
 
 const GET_QUOTES = gql`
   query GetQuotes($numberOfParagraphs: Int!) {
@@ -10,15 +11,17 @@ const GET_QUOTES = gql`
 `
 
 const execute = async (variables) => {
-  const fetchResponse = await fetch('https://api.cagesum.com/v1/graphql', {
+  const response = await fetch('https://api.cagesum.com/v1/graphql', {
     method: 'POST',
     body: JSON.stringify({
       query: GET_QUOTES,
       variables,
     }),
   })
-  const data = await fetchResponse.json()
+
+  const data = await response.json()
   console.log('DEBUG execute: ', data)
+
   return data
 }
 
@@ -40,4 +43,4 @@ const handler = async (req, res) => {
   return res.json({ paragraphs })
 }
 
-export default handler
+module.exports = handler
