@@ -13,7 +13,7 @@ const GET_QUOTES = gql`
 const QUOTES_PER_PARAGRAPH = 5
 
 const generate = async (req, res) => {
-  const { numberOfParagraphs = 1 } = req.body.input
+  const { numberOfParagraphs = 1 } = req?.body?.input
 
   const numberOfQuotes = numberOfParagraphs * QUOTES_PER_PARAGRAPH
 
