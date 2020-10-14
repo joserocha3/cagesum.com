@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import {
   Alert,
   AlertIcon,
@@ -8,8 +8,8 @@ import {
   Container,
   Flex,
   FormControl,
-  Heading,
   Text,
+  useClipboard,
 } from '@chakra-ui/core'
 
 import Layout from '@components/Layout'
@@ -23,14 +23,15 @@ const Home = () => {
   const [error, setError] = useState()
   const [isLoading, setIsLoading] = useState(false)
   const [paragraphs, setParagraphs] = useState()
+  const { hasCopied, onCopy } = useClipboard(paragraphs)
 
-  const handleParagraphChange = (value) => {
-    setNumberOfParagraphs(value)
-  }
+  const handleParagraphChange = useCallback((event) => {
+    setNumberOfParagraphs(event.target.value)
+  })
 
-  const handleQuotesChange = (value) => {
-    setQuotesPerParagraph(value)
-  }
+  const handleQuotesChange = useCallback((event) => {
+    setQuotesPerParagraph(event.target.value)
+  })
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -44,28 +45,23 @@ const Home = () => {
         input: { numberOfParagraphs, quotesPerParagraph },
       })
 
-      setIsLoading(false)
-
       if (data?.paragraphs) {
         setParagraphs(data?.paragraphs)
-      } else if (data?.error) {
-        setError(data?.error)
       } else {
-        setError('Something is 🐟-y')
+        setError(data?.error || 'Something is 🐟-y')
       }
     } catch (e) {
-      setIsLoading(false)
       setError(e.toString())
     }
+
+    setIsLoading(false)
   }
 
   return (
     <Layout>
       <Container>
-        <Heading>Cagesum</Heading>
-
         <form onSubmit={handleSubmit}>
-          <FormControl id="email" mt={4}>
+          <FormControl id="email" mt={8}>
             <Flex
               align="center"
               wrap="wrap"
@@ -73,8 +69,7 @@ const Home = () => {
             >
               <Text lineHeight="3rem">Throw</Text>&nbsp;
               <NumberInput
-                defaultValue={numberOfParagraphs}
-                min={1}
+                value={numberOfParagraphs}
                 max={10}
                 onChange={handleParagraphChange}
               />
@@ -84,8 +79,7 @@ const Home = () => {
               </Text>
               &nbsp;
               <NumberInput
-                defaultValue={quotesPerParagraph}
-                min={1}
+                value={quotesPerParagraph}
                 max={5}
                 onChange={handleQuotesChange}
               />
@@ -99,19 +93,32 @@ const Home = () => {
               mt={4}
               type="submit"
               isLoading={isLoading}
-              loadingText=""
+              loadingText="beep-boop"
               p={10}
               isFullWidth
+              fontSize="2xl"
+              boxShadow="lg"
+              _focus={{ outline: 'none' }}
             >
-              Get the Cage
+              Open the Cage
             </Button>
           </FormControl>
         </form>
 
         {paragraphs && (
-          <Text mt={4} whiteSpace="break-spaces">
-            {paragraphs}
-          </Text>
+          <Flex direction="column" align="center" mt={8}>
+            <Button
+              w="fit-content"
+              onClick={onCopy}
+              boxShadow="md"
+              _focus={{ outline: 'none' }}
+            >
+              {hasCopied ? 'Copied!' : 'Copy'}
+            </Button>
+            <Text mt={4} whiteSpace="break-spaces">
+              {paragraphs}
+            </Text>
+          </Flex>
         )}
 
         {error && (

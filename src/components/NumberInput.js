@@ -1,20 +1,14 @@
-import {
-  NumberInput as ChakraNumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
-} from '@chakra-ui/core'
+import { Select } from '@chakra-ui/core'
 
-const NumberInput = (props) => {
+const NumberInput = ({ max = 1, ...rest }) => {
   return (
-    <ChakraNumberInput w={70} {...props}>
-      <NumberInputField />
-      <NumberInputStepper>
-        <NumberIncrementStepper />
-        <NumberDecrementStepper />
-      </NumberInputStepper>
-    </ChakraNumberInput>
+    <Select w={70} {...rest}>
+      {Array(max)
+        .fill()
+        .map((a, i) => (
+          <option value={i + 1}>{i + 1}</option>
+        ))}
+    </Select>
   )
 }
 

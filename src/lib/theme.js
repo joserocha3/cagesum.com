@@ -19,7 +19,7 @@ const theme = extendTheme({
       },
       a: {
         borderBottom: 'dotted 1px black',
-        _hover: { textDecoration: 'unset' },
+        _hover: { textDecoration: 'none !important' },
       },
     }),
   },

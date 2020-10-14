@@ -1,9 +1,9 @@
 import Head from 'next/head'
 
-const TITLE = 'Cagesum | Nicolas Cage Lorem Ipsum text generator generator'
+const TITLE = 'Cagesum | Nicolas Cage text placeholder generator'
 const DESCRIPTION =
   "Put your boring ipsum back in the box... - the world's first Nicolas Cage Lorem Ipsum text generator. Get the Cage."
-const IMAGE = 'https://pablorocha.me/assets/img/headshot.jpg'
+const IMAGE = 'https://cagesum.com/img/free.jpg'
 const URL = 'https://cagesum.com'
 
 function makeSchema() {
