@@ -1,4 +1,3 @@
-import NextLink from 'next/link'
 import { Box, Container, Heading, Image, Link } from '@chakra-ui/core'
 
 const Header = () => {
@@ -10,9 +9,9 @@ const Header = () => {
     >
       <Container as="header" textAlign="right" py={3}>
         Made by&nbsp;
-        <NextLink href="https:/pablorocha.me" passHref>
-          <Link isExternal>Pablo Rocha</Link>
-        </NextLink>
+        <Link isExternal href="https:/pablorocha.me">
+          Pablo Rocha
+        </Link>
       </Container>
 
       <Heading as="h1" fontSize={[60, 90, 130]} textAlign="center">
