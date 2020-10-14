@@ -6,7 +6,9 @@ const NumberInput = ({ max = 1, ...rest }) => {
       {Array(max)
         .fill()
         .map((a, i) => (
-          <option value={i + 1}>{i + 1}</option>
+          <option key={a} value={i + 1}>
+            {i + 1}
+          </option>
         ))}
     </Select>
   )

@@ -12,6 +12,7 @@ const GET_QUOTES = gql`
 
 const NUMBER_OF_PARAGRAPHS = 1
 const QUOTES_PER_PARAGRAPH = 3
+const QUOTES_IN_DB = 42
 
 const getRandomOffset = (max) => {
   return Math.floor(Math.random() * Math.floor(max))
@@ -27,15 +28,18 @@ const generate = async (req, res) => {
   const quotesPerParagraph =
     req?.body?.input?.quotesPerParagraph || QUOTES_PER_PARAGRAPH
 
-  const numberOfQuotes = numberOfParagraphs * quotesPerParagraph
+  const numberOfQuotes =
+    numberOfParagraphs * quotesPerParagraph > QUOTES_IN_DB
+      ? QUOTES_IN_DB
+      : numberOfParagraphs * quotesPerParagraph
 
   const response = await fetch('https://api.cagesum.com/v1/graphql', {
     method: 'POST',
     body: JSON.stringify({
       query: GET_QUOTES.loc.source.body,
       variables: {
-        limit: numberOfQuotes > 25 ? 25 : numberOfQuotes,
-        offset: getRandomOffset(20), // limited by the amount of quotes in database
+        limit: numberOfQuotes,
+        offset: getRandomOffset(QUOTES_IN_DB - numberOfQuotes),
         orderDirection: getRandomDirection(),
       },
     }),
