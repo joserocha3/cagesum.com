@@ -3,8 +3,8 @@ import shuffle from 'lodash.shuffle'
 import fetch from 'node-fetch'
 
 const GET_QUOTES = gql`
-  query GetQuotes($limit: Int!) {
-    quote(limit: $limit) {
+  query GetQuotes($limit: Int!, $offset: Int!, $orderDirection: order_by!) {
+    quote(limit: $limit, offset: $offset, order_by: { text: $orderDirection }) {
       text
     }
   }
@@ -12,6 +12,14 @@ const GET_QUOTES = gql`
 
 const NUMBER_OF_PARAGRAPHS = 1
 const QUOTES_PER_PARAGRAPH = 3
+
+const getRandomOffset = (max) => {
+  return Math.floor(Math.random() * Math.floor(max))
+}
+
+const getRandomDirection = () => {
+  return ['asc', 'desc'][Math.floor(Math.random() * 2)]
+}
 
 const generate = async (req, res) => {
   const numberOfParagraphs =
@@ -25,7 +33,11 @@ const generate = async (req, res) => {
     method: 'POST',
     body: JSON.stringify({
       query: GET_QUOTES.loc.source.body,
-      variables: { limit: numberOfQuotes },
+      variables: {
+        limit: numberOfQuotes > 25 ? 25 : numberOfQuotes,
+        offset: getRandomOffset(20), // limited by the amount of quotes in database
+        orderDirection: getRandomDirection(),
+      },
     }),
   })
 

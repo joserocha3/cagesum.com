@@ -70,7 +70,7 @@ const Home = () => {
               <Text lineHeight="3rem">Throw</Text>&nbsp;
               <NumberInput
                 value={numberOfParagraphs}
-                max={10}
+                max={5}
                 onChange={handleParagraphChange}
               />
               &nbsp;
