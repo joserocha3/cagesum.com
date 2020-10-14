@@ -2,7 +2,7 @@ import Head from 'next/head'
 
 const TITLE = 'Cagesum | Nicolas Cage text placeholder generator'
 const DESCRIPTION =
-  "Put your boring ipsum back in the box... - the world's first Nicolas Cage Lorem Ipsum text generator. Get the Cage."
+  "Put your boring ipsum back in the box... - the world's first Nicolas Cage Lorem Ipsum text generator. Open the Cage."
 const IMAGE = 'https://cagesum.com/img/free.jpg'
 const URL = 'https://cagesum.com'
 
