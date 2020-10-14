@@ -42,6 +42,7 @@ const Header = () => {
         boxShadow="2xl"
         borderRadius="sm"
         alt="nic cage in con air"
+        ignoreFallback
       />
     </Box>
   )
