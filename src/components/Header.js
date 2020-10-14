@@ -9,7 +9,10 @@ const Header = () => {
     >
       <Container as="header" textAlign="right" py={3}>
         Made by&nbsp;
-        <Link isExternal href="https://pablorocha.me">
+        <Link
+          isExternal
+          href="https://pablorocha.me/?utm_source=cagesum_website&utm_medium=header_link&utm_campaign=cagesum"
+        >
           Pablo Rocha
         </Link>
       </Container>
@@ -38,6 +41,7 @@ const Header = () => {
         mt={8}
         boxShadow="2xl"
         borderRadius="sm"
+        alt="nic cage in con air"
       />
     </Box>
   )
