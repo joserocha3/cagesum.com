@@ -18,7 +18,7 @@ import NumberInput from '@components/NumberInput'
 import http from '@lib/http'
 
 const Home = () => {
-  const [numberOfParagraphs, setNumberOfParagraphs] = useState(1)
+  const [numberOfParagraphs, setNumberOfParagraphs] = useState(2)
   const [quotesPerParagraph, setQuotesPerParagraph] = useState(3)
   const [error, setError] = useState()
   const [isLoading, setIsLoading] = useState(false)
