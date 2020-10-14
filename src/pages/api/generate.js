@@ -2,35 +2,42 @@ import gql from 'graphql-tag'
 import shuffle from 'lodash.shuffle'
 
 const GET_QUOTES = gql`
-  query GetText {
-    quote {
+  query GetQuotes($numberOfParagraphs: Int!) {
+    quote(limit: $numberOfParagraphs) {
       text
     }
   }
 `
 
-const generate = async (req, res) => {
-  const { body: amount } = req
-
-  const query = GET_QUOTES.loc.source.body
-
-  const response = await fetch('https://api.cagesum.com/v1/graphql', {
+const execute = async (variables) => {
+  const fetchResponse = await fetch('https://api.cagesum.com/v1/graphql', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-    body: JSON.stringify({ query }),
+    body: JSON.stringify({
+      query: GET_QUOTES,
+      variables,
+    }),
   })
+  const data = await fetchResponse.json()
+  console.log('DEBUG execute: ', data)
+  return data
+}
 
-  const quotes = shuffle((await response.json?.())?.data?.quote || [])
+const handler = async (req, res) => {
+  const { numberOfParagraphs = 1 } = req.body.input
+
+  const { data, errors } = await execute({ numberOfParagraphs })
+
+  if (errors) {
+    return res.status(400).json(errors[0])
+  }
+
+  const quotes = shuffle(data?.quote || [])
 
   let paragraphs = ''
   quotes.forEach((q) => (paragraphs += `${q.text} `))
+  console.log('DEBUG handler: ', paragraphs)
 
-  res.statusCode = 200
-  res.setHeader('Content-Type', 'application/json')
-  res.json({ paragraphs })
+  return res.json({ paragraphs })
 }
 
-export default generate
+export default handler
