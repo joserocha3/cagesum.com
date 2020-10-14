@@ -12,7 +12,7 @@ const GET_QUOTES = gql`
 
 const QUOTES_PER_PARAGRAPH = 5
 
-const generate = async (req, res) => {
+const generateText = async (req, res) => {
   const { numberOfParagraphs = 1 } = req.body.input
 
   const numberOfQuotes = numberOfParagraphs * QUOTES_PER_PARAGRAPH
@@ -40,4 +40,4 @@ const generate = async (req, res) => {
   return res.json({ paragraphs })
 }
 
-export default generate
+export default generateText
