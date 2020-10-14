@@ -9,7 +9,8 @@ const GET_QUOTES = gql`
   }
 `
 
-export default async function handler(req, res) {
+const generate = async (req, res) => {
+  console.log('test')
   const { body: amount } = req
 
   const query = GET_QUOTES.loc.source.body
@@ -26,9 +27,11 @@ export default async function handler(req, res) {
   const quotes = shuffle((await response.json?.())?.data?.quote || [])
 
   let paragraphs = ''
-  quotes.forEach((q) => (paragraphs += q.text))
+  quotes.forEach((q) => (paragraphs += `${q.text} `))
 
   res.statusCode = 200
   res.setHeader('Content-Type', 'application/json')
   res.json({ paragraphs })
 }
+
+export default generate

@@ -1,7 +1,7 @@
 const http = async (url, body = '') => {
   try {
     const response = await fetch(url, {
-      method: 'post',
+      method: 'POST',
       body: body,
     })
 
