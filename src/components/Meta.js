@@ -1,7 +1,8 @@
 import Head from 'next/head'
 
-const TITLE = 'Cagesum'
-const DESCRIPTION = 'Nicolas Cage text placeholder generator'
+const TITLE = 'Cagesum | Nicolas Cage Lorem Ipsum text generator generator'
+const DESCRIPTION =
+  "Put your boring ipsum back in the box... - the world's first Nicolas Cage Lorem Ipsum text generator. Get the Cage."
 const IMAGE = 'https://pablorocha.me/assets/img/headshot.jpg'
 const URL = 'https://cagesum.com'
 
@@ -10,31 +11,10 @@ function makeSchema() {
     {
       type: 'application/ld+json',
       innerHTML: JSON.stringify({
-        // '@context': 'http://schema.org',
-        // '@type': 'Person',
-        // name: 'Jose Pablo Rocha, Jr.',
-        // image: IMAGE,
-        // jobTitle: 'Software Engineer',
-        // gender: 'male',
-        // address: {
-        //   '@type': 'PostalAddress',
-        //   addressLocality: 'Edinburg',
-        //   addressRegion: 'TX',
-        //   postalCode: '78539',
-        //   addressCountry: 'United States',
-        // },
-        // email: 'hello@pablorocha.me',
-        // birthDate: '1984-08-16',
-        // alumniOf: 'University of Texas Pan American',
-        // birthPlace: 'Illinois',
-        // sameAs: [
-        //   'https://twitter.com/jprocha101',
-        //   'https://www.facebook.com/jprocha101',
-        //   'https://github.com/joserocha3',
-        //   'https://instagram.com/jprocha101',
-        //   'https://www.linkedin.com/in/jprocha101',
-        // ],
-        // url: URL,
+        '@context': 'http://schema.org',
+        '@type': 'WebApplication',
+        applicationCategory: 'Utility',
+        about: DESCRIPTION,
       }),
     },
   ]
@@ -73,7 +53,7 @@ const Meta = ({ title, description, image }) => {
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
 
       {/* HTML Meta Tags */}
-      <title>{title || "Pablo Rocha's Technology, Blog and Portfolio"}</title>
+      <title>{title || TITLE}</title>
       <meta name="description" content={description || DESCRIPTION} />
 
       {/* Facebook Meta Tags */}

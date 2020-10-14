@@ -5,6 +5,7 @@ import {
   AlertTitle,
   AlertDescription,
   Button,
+  Container,
   FormControl,
   FormLabel,
   Heading,
@@ -15,6 +16,8 @@ import {
   NumberDecrementStepper,
   Text,
 } from '@chakra-ui/core'
+
+import Layout from '@components/Layout'
 
 import http from '@lib/http'
 
@@ -56,8 +59,8 @@ const Home = () => {
   }
 
   return (
-    <div>
-      <main>
+    <Layout>
+      <Container>
         <Heading>Cagesum</Heading>
 
         <form onSubmit={handleSubmit}>
@@ -80,7 +83,7 @@ const Home = () => {
             </NumberInput>
 
             <Button mt={4} type="submit" isLoading={isLoading}>
-              Get Some
+              Get the Cage
             </Button>
           </FormControl>
         </form>
@@ -98,8 +101,8 @@ const Home = () => {
             <AlertDescription>{error}</AlertDescription>
           </Alert>
         )}
-      </main>
-    </div>
+      </Container>
+    </Layout>
   )
 }
 
