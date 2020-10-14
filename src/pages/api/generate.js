@@ -10,7 +10,6 @@ const GET_QUOTES = gql`
 `
 
 const generate = async (req, res) => {
-  console.log('test')
   const { body: amount } = req
 
   const query = GET_QUOTES.loc.source.body

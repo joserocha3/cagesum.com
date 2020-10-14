@@ -1,9 +1,8 @@
-const http = async (url, body = '') => {
+import axios from 'axios'
+
+const http = async (url, data = {}, options = {}) => {
   try {
-    const response = await fetch(url, {
-      method: 'POST',
-      body: body,
-    })
+    const response = await axios.post(url, data, options)
 
     if (!response) {
       return { error: `There was a problem. No response.` }
@@ -13,7 +12,7 @@ const http = async (url, body = '') => {
       return { error: `There was a problem. Status Code: ${response.status}` }
     }
 
-    return await response.json?.()
+    return response?.data
   } catch (e) {
     return { error: `Fetch Error: ${e}` }
   }
