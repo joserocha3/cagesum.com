@@ -14,7 +14,7 @@ const http = async (url, data = {}, options = {}) => {
 
     return response?.data
   } catch (e) {
-    return { error: `Fetch Error: ${e}` }
+    return { error: e.response?.data?.message || e.message }
   }
 }
 

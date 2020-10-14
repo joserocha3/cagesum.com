@@ -19,13 +19,13 @@ import {
 import http from '@lib/http'
 
 const Home = () => {
-  const [amount, setAmount] = useState(1)
+  const [numberOfParagraphs, setNumberOfParagraphs] = useState(1)
   const [error, setError] = useState()
   const [isLoading, setIsLoading] = useState(false)
   const [paragraphs, setParagraphs] = useState()
 
   const handleChange = (value) => {
-    setAmount(value)
+    setNumberOfParagraphs(value)
   }
 
   const handleSubmit = async (event) => {
@@ -36,7 +36,9 @@ const Home = () => {
     setIsLoading(true)
 
     try {
-      const data = await http('/api/generate', amount)
+      const data = await http('/api/generate', {
+        input: { numberOfParagraphs },
+      })
 
       setIsLoading(false)
 
@@ -65,7 +67,7 @@ const Home = () => {
             </FormLabel>
 
             <NumberInput
-              defaultValue={amount}
+              defaultValue={numberOfParagraphs}
               min={1}
               max={10}
               onChange={handleChange}
