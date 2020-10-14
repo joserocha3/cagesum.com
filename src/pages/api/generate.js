@@ -10,12 +10,16 @@ const GET_QUOTES = gql`
   }
 `
 
-const QUOTES_PER_PARAGRAPH = 5
+const NUMBER_OF_PARAGRAPHS = 1
+const QUOTES_PER_PARAGRAPH = 3
 
 const generate = async (req, res) => {
-  const numberOfParagraphs = req?.body?.input?.numberOfParagraphs || 1
+  const numberOfParagraphs =
+    req?.body?.input?.numberOfParagraphs || NUMBER_OF_PARAGRAPHS
+  const quotesPerParagraph =
+    req?.body?.input?.quotesPerParagraph || QUOTES_PER_PARAGRAPH
 
-  const numberOfQuotes = numberOfParagraphs * QUOTES_PER_PARAGRAPH
+  const numberOfQuotes = numberOfParagraphs * quotesPerParagraph
 
   const response = await fetch('https://api.cagesum.com/v1/graphql', {
     method: 'POST',
@@ -34,7 +38,7 @@ const generate = async (req, res) => {
   let paragraphs = ''
   shuffle(data?.quote || []).forEach((q, index) => {
     paragraphs = paragraphs +=
-      (index + 1) % QUOTES_PER_PARAGRAPH === 0 ? `${q.text}\n\n` : `${q.text} `
+      (index + 1) % quotesPerParagraph === 0 ? `${q.text}\n\n` : `${q.text} `
   })
 
   return res.json({ paragraphs })

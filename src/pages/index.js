@@ -6,29 +6,30 @@ import {
   AlertDescription,
   Button,
   Container,
+  Flex,
   FormControl,
-  FormLabel,
   Heading,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
   Text,
 } from '@chakra-ui/core'
 
 import Layout from '@components/Layout'
+import NumberInput from '@components/NumberInput'
 
 import http from '@lib/http'
 
 const Home = () => {
   const [numberOfParagraphs, setNumberOfParagraphs] = useState(1)
+  const [quotesPerParagraph, setQuotesPerParagraph] = useState(3)
   const [error, setError] = useState()
   const [isLoading, setIsLoading] = useState(false)
   const [paragraphs, setParagraphs] = useState()
 
-  const handleChange = (value) => {
+  const handleParagraphChange = (value) => {
     setNumberOfParagraphs(value)
+  }
+
+  const handleQuotesChange = (value) => {
+    setQuotesPerParagraph(value)
   }
 
   const handleSubmit = async (event) => {
@@ -40,7 +41,7 @@ const Home = () => {
 
     try {
       const data = await http('/api/generate', {
-        input: { numberOfParagraphs },
+        input: { numberOfParagraphs, quotesPerParagraph },
       })
 
       setIsLoading(false)
@@ -65,24 +66,43 @@ const Home = () => {
 
         <form onSubmit={handleSubmit}>
           <FormControl id="email" mt={4}>
-            <FormLabel>
-              How many paragraphs of the Cage suits your needs?
-            </FormLabel>
-
-            <NumberInput
-              defaultValue={numberOfParagraphs}
-              min={1}
-              max={10}
-              onChange={handleChange}
+            <Flex
+              align="center"
+              wrap="wrap"
+              justify={['center', 'center', 'flex-start']}
             >
-              <NumberInputField />
-              <NumberInputStepper>
-                <NumberIncrementStepper />
-                <NumberDecrementStepper />
-              </NumberInputStepper>
-            </NumberInput>
+              <Text lineHeight="3rem">Throw</Text>&nbsp;
+              <NumberInput
+                defaultValue={numberOfParagraphs}
+                min={1}
+                max={10}
+                onChange={handleParagraphChange}
+              />
+              &nbsp;
+              <Text whiteSpace="nowrap">
+                {`paragraph${numberOfParagraphs > 1 ? 's' : ''} with`}
+              </Text>
+              &nbsp;
+              <NumberInput
+                defaultValue={quotesPerParagraph}
+                min={1}
+                max={5}
+                onChange={handleQuotesChange}
+              />
+              &nbsp;
+              <Text whiteSpace="nowrap">
+                {`quote${quotesPerParagraph > 1 ? 's' : ''} each my way!`}
+              </Text>
+            </Flex>
 
-            <Button mt={4} type="submit" isLoading={isLoading}>
+            <Button
+              mt={4}
+              type="submit"
+              isLoading={isLoading}
+              loadingText=""
+              p={10}
+              isFullWidth
+            >
               Get the Cage
             </Button>
           </FormControl>
