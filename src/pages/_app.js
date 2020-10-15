@@ -1,9 +1,12 @@
 import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 import Chakra from '@components/Chakra'
 
 import GTMPageView from '@lib/gtm'
 
 const App = ({ Component, pageProps }) => {
+  const router = useRouter()
+
   useEffect(() => {
     const handleRouteChange = (url) => GTMPageView(url)
     Router.events.on('routeChangeComplete', handleRouteChange)
