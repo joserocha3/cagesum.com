@@ -9,9 +9,9 @@ const App = ({ Component, pageProps }) => {
 
   useEffect(() => {
     const handleRouteChange = (url) => GTMPageView(url)
-    Router.events.on('routeChangeComplete', handleRouteChange)
+    router.events.on('routeChangeComplete', handleRouteChange)
     return () => {
-      Router.events.off('routeChangeComplete', handleRouteChange)
+      router.events.off('routeChangeComplete', handleRouteChange)
     }
   }, [])
 
