@@ -60,7 +60,7 @@ const Home = () => {
   return (
     <Layout>
       <Container>
-        <form onSubmit={handleSubmit} id="gtm-generate">
+        <form onSubmit={handleSubmit}>
           <FormControl id="email" mt={8}>
             <Flex
               align="center"
@@ -90,6 +90,7 @@ const Home = () => {
             </Flex>
 
             <Button
+              id="gtm-generate"
               mt={4}
               type="submit"
               isLoading={isLoading}
