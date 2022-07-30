@@ -35,6 +35,9 @@ const generate = async (req, res) => {
 
   const response = await fetch('https://api.cagesum.com/v1/graphql', {
     method: 'POST',
+    headers: {
+      'x-hasura-admin-secret': process.env.HASURA_ADMIN_SECRET,
+    },
     body: JSON.stringify({
       query: GET_QUOTES.loc.source.body,
       variables: {
