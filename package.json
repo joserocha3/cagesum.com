@@ -1,6 +1,6 @@
 {
   "name": "cagesum.com",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Nicolas Cage Lorem Ipsum text placeholder generator",
   "repository": {
     "type": "git",
@@ -16,15 +16,13 @@
     "nextjs",
     "react",
     "lorem",
-    "ipsum",
-    "graphql"
+    "ipsum"
   ],
   "keywords": [
     "nextjs",
     "react",
     "lorem",
-    "ipsum",
-    "graphql"
+    "ipsum"
   ],
   "scripts": {
     "dev": "next dev",
@@ -36,12 +34,9 @@
     "@chakra-ui/core": "^1.0.0-rc.5",
     "@chakra-ui/icons": "^1.0.0-rc.5",
     "@chakra-ui/theme-tools": "^1.0.0-rc.5",
-    "axios": "^0.20.0",
-    "graphql": "^15.3.0",
-    "graphql-tag": "^2.11.0",
-    "lodash.shuffle": "^4.2.0",
+    "axios": "^0.20.0",   
+    "lodash": "^4.17.21",
     "next": "9.5.5",
-    "node-fetch": "^2.6.1",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },
