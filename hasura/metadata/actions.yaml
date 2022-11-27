@@ -1,0 +1,20 @@
+actions:
+  - name: actionName
+    definition:
+      kind: synchronous
+      handler: http://host.docker.internal:3000
+    comment: test
+  - name: generate
+    definition:
+      kind: ""
+      handler: https://cagesum.com/api/generate
+    permissions:
+      - role: public
+custom_types:
+  enums: []
+  input_objects:
+    - name: SampleInput
+  objects:
+    - name: GenerateOutput
+    - name: SampleOutput
+  scalars: []
