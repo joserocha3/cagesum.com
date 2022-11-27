@@ -1,9 +1,4 @@
 actions:
-  - name: actionName
-    definition:
-      kind: synchronous
-      handler: http://host.docker.internal:3000
-    comment: test
   - name: generate
     definition:
       kind: ""

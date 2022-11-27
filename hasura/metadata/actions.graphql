@@ -1,9 +1,3 @@
-type Mutation {
-  actionName(
-    arg1: SampleInput!
-  ): SampleOutput
-}
-
 type Query {
   generate(
     numberOfParagraphs: Int
@@ -11,16 +5,6 @@ type Query {
   ): GenerateOutput
 }
 
-input SampleInput {
-  username: String!
-  password: String!
-}
-
 type GenerateOutput {
   paragraphs: String!
 }
-
-type SampleOutput {
-  accessToken: String!
-}
-
