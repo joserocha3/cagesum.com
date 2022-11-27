@@ -7,9 +7,7 @@ actions:
       - role: public
 custom_types:
   enums: []
-  input_objects:
-    - name: SampleInput
+  input_objects: []
   objects:
     - name: GenerateOutput
-    - name: SampleOutput
   scalars: []
