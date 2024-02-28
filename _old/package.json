@@ -1,0 +1,60 @@
+{
+  "name": "cagesum.com",
+  "version": "1.0.0",
+  "description": "Nicolas Cage Lorem Ipsum text placeholder generator",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joserocha3/cagesome.com"
+  },
+  "author": "Pablo Rocha <pablo@pablorocha.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joserocha3/cagesome.com/issues"
+  },
+  "homepage": "https://cagesome.com",
+  "tags": [
+    "nextjs",
+    "react",
+    "lorem",
+    "ipsum",
+    "graphql"
+  ],
+  "keywords": [
+    "nextjs",
+    "react",
+    "lorem",
+    "ipsum",
+    "graphql"
+  ],
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export",
+    "hasura": "cd hasura && docker compose up -d && wait-on tcp:8080 -t 5000 && hasura console",
+    "hasura-kill": "cd hasura && docker stop cagesum-hasura cagesum-pg"
+  },
+  "dependencies": {
+    "@chakra-ui/core": "^1.0.0-rc.5",
+    "@chakra-ui/icons": "^1.0.0-rc.5",
+    "@chakra-ui/theme-tools": "^1.0.0-rc.5",
+    "axios": "^0.20.0",
+    "graphql": "^15.3.0",
+    "graphql-tag": "^2.11.0",
+    "lodash.shuffle": "^4.2.0",
+    "next": "9.5.5",
+    "node-fetch": "^2.6.1",
+    "primevue": "^3.49.1",
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.11.8",
+    "@types/react": "^16.9.52",
+    "nuxt-primevue": "^0.3.1",
+    "prettier": "^2.1.2",
+    "start-server-and-test": "^1.14.0",
+    "typescript": "^4.0.3",
+    "wait-on": "^6.0.1"
+  }
+}

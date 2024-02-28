@@ -1,7 +1,0 @@
-table:
-  name: quote
-  schema: public
-object_relationships:
-  - name: filmByFilm
-    using:
-      foreign_key_constraint_on: film
