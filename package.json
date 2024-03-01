@@ -10,12 +10,16 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "graphql": "^16.8.1",
+    "graphql-tag": "^2.12.6",
+    "lodash": "^4.17.21",
     "nuxt": "^3.10.3",
     "primevue": "^3.49.1",
     "vue": "^3.4.19",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.202",
     "autoprefixer": "^10.4.17",
     "nuxt-primevue": "^0.3.1",
     "postcss": "^8.4.35",

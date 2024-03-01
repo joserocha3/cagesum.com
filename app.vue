@@ -68,11 +68,13 @@ const numbersOfQuotes = [
   { name: '5', code: '5' },
 ]
 
-const unlockTheCage = () => {
-  const paragraphs = selectedNumberOfParagraphs.value.code
-  const quotes = selectedNumberOfQuotes.value.code
+const paragraphs = ref('')
 
-  console.log(`paragraphs=${paragraphs}&quotes=${quotes}`)
+const unlockTheCage = async () => {
+  paragraphs.value = await useCagesum({
+    numberOfParagraphs: selectedNumberOfParagraphs.value.code,
+    quotesPerParagraph: selectedNumberOfQuotes.value.code,
+  })
 }
 </script>
 
@@ -147,5 +149,10 @@ const unlockTheCage = () => {
       class="w-full"
       @click="unlockTheCage"
     />
+
+    <div class="my-8 flex flex-col items-center" v-if="paragraphs">
+      <Button label="Copy" severity="secondary" />
+      <p class="mt-4 whitespace-break-spaces">{{ paragraphs }}</p>
+    </div>
   </div>
 </template>
