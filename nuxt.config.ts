@@ -2,7 +2,7 @@ import path from 'path'
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['nuxt-primevue'],
+  modules: ['nuxt-primevue', '@vueuse/nuxt'],
   primevue: {
     options: {
       unstyled: true,

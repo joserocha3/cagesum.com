@@ -3,17 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --primary-50: 236 253 245;
-  --primary-100: 209 250 229;
-  --primary-200: 167 243 208;
-  --primary-300: 110 231 183;
-  --primary-400: 52 211 153;
-  --primary-500: 16 185 129;
-  --primary-600: 5 150 105;
-  --primary-700: 4 120 87;
-  --primary-800: 6 95 70;
-  --primary-900: 4 78 56;
-  --primary-950: 2 44 34;
+  --primary-50: 233, 240, 246; /* Lightest */
+  --primary-100: 217, 228, 239;
+  --primary-200: 194, 210, 225;
+  --primary-300: 171, 192, 211;
+  --primary-400: 154, 181, 201; /* Lighter #9AADC9 */
+  --primary-500: 154, 173, 201; /* Base #9AADC9 */
+  --primary-600: 138, 156, 181; /* Darker #9AADC9 */
+  --primary-700: 122, 139, 161;
+  --primary-800: 106, 122, 141;
+  --primary-900: 90, 105, 121; /* Darkest */
+  --primary-950: 74, 88, 101; /* Extra dark contrast */
   --surface-0: 255 255 255;
   --surface-50: 248 250 252;
   --surface-100: 241 245 249;

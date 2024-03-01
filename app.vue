@@ -76,6 +76,10 @@ const unlockTheCage = async () => {
     quotesPerParagraph: selectedNumberOfQuotes.value.code,
   })
 }
+
+const { copy, copied, isSupported } = useClipboard({
+  source: paragraphs.value,
+})
 </script>
 
 <template>
@@ -147,11 +151,17 @@ const unlockTheCage = async () => {
       label="Unlock the Cage"
       size="large"
       class="w-full"
+      raised
       @click="unlockTheCage"
     />
 
     <div class="my-8 flex flex-col items-center" v-if="paragraphs">
-      <Button label="Copy" severity="secondary" />
+      <Button
+        v-if="isSupported"
+        :label="copied ? 'Copied' : 'Copy'"
+        outlined
+        @click="copy(paragraphs)"
+      />
       <p class="mt-4 whitespace-break-spaces">{{ paragraphs }}</p>
     </div>
   </div>
