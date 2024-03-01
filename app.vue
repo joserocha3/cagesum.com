@@ -5,6 +5,51 @@ import Image from 'primevue/image'
 import Dropdown from 'primevue/dropdown'
 import Button from 'primevue/button'
 
+const title = 'Cagesum | Nicolas Cage text placeholder generator'
+const description =
+  "Put your boring ipsum back in the box... - the world's first Nicolas Cage Lorem Ipsum text generator. Open the Cage."
+const keywords = 'nicolas cage, placeholder, text, generator, lorem ipsum'
+
+useHead({
+  title,
+  meta: [
+    { name: 'description', content: description },
+    { name: 'keywords', content: keywords },
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'http://schema.org',
+        '@type': 'WebSite',
+        url: 'https://cagesum.com',
+        name: title,
+        description: description,
+      }),
+    },
+  ],
+})
+
+useSeoMeta({
+  // General Meta Tags
+  title,
+  description: description,
+  keywords: 'nicolas cage, placeholder, text, generator, lorem ipsum',
+
+  // Facebook Meta Tags
+  ogTitle: title,
+  ogImage: 'https://cagesum.com/img/free.jpg',
+  ogUrl: 'https://cagesum.com',
+  ogType: 'website',
+  ogDescription: description,
+
+  // Twitter Meta Tags
+  twitterCard: 'summary_large_image',
+  twitterTitle: title,
+  twitterImage: 'https://cagesum.com/img/free.jpg',
+  twitterDescription: description,
+})
+
 const selectedNumberOfParagraphs = ref()
 const numbersOfParagraphs = [
   { name: '1', code: '1' },
@@ -22,6 +67,13 @@ const numbersOfQuotes = [
   { name: '4', code: '4' },
   { name: '5', code: '5' },
 ]
+
+const unlockTheCage = () => {
+  const paragraphs = selectedNumberOfParagraphs.value.code
+  const quotes = selectedNumberOfQuotes.value.code
+
+  console.log(`paragraphs=${paragraphs}&quotes=${quotes}`)
+}
 </script>
 
 <template>
@@ -37,7 +89,7 @@ const numbersOfQuotes = [
       </a>
     </header>
 
-    <h1 class="text-center text-9xl font-bold mb-10 text-zinc-800">Cagesum</h1>
+    <h1 class="text-center text-9xl font-bold mb-10 text-zinc-700">Cagesum</h1>
 
     <h2 class="text-center text-4xl max-w-[600px] m-auto font-semibold mb-10">
       The world's first Nicolas Cage text placeholder generator
@@ -48,7 +100,7 @@ const numbersOfQuotes = [
     </div>
   </div>
 
-  <div class="flex flex-col py-8 max-w-[600px] m-auto">
+  <div class="flex flex-col py-8 max-w-[600px] m-auto items-center">
     <div class="mb-4">
       Throw
       <Dropdown
@@ -65,6 +117,12 @@ const numbersOfQuotes = [
       quotes each my way!
     </div>
 
-    <Button label="Open the Cage" size="large" />
+    <Button
+      :disabled="!selectedNumberOfParagraphs || !selectedNumberOfQuotes"
+      label="Unlock the Cage"
+      size="large"
+      class="w-full"
+      @click="unlockTheCage"
+    />
   </div>
 </template>
